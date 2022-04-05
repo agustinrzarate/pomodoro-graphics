@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pomodorographics-staging-124904-authRole",
+      "UnauthRoleArn": "arn:aws:iam::268789360355:role/amplify-pomodorographics-staging-124904-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::268789360355:role/amplify-pomodorographics-staging-124904-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-pomodorographics-staging-124904-deployment",
+      "UnauthRoleName": "amplify-pomodorographics-staging-124904-unauthRole",
+      "StackName": "amplify-pomodorographics-staging-124904",
+      "StackId": "arn:aws:cloudformation:us-east-1:268789360355:stack/amplify-pomodorographics-staging-124904/c67b6e00-b4de-11ec-a097-0e1d2ca4d6ed",
+      "AmplifyAppId": "d1z0eiob2c399l"
+    },
+    "categories": {
+      "auth": {
+        "pomodorographics": {}
+      }
+    }
+  }
+}
