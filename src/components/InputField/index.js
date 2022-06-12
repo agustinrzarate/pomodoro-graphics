@@ -1,59 +1,56 @@
 import { TextField, Input } from "@mui/material";
-import { useState } from "react";
 import { validateEmail, validatePassword } from "../../utils/regex";
 
-export const typesInput = {
-    EMAIL : 'email',
-    PASSWORD: 'password',
-    TEXT: 'text'
-}
+export const INPUT_TYPES_INTERFACE = {
+  email: (fieldValue) => validateEmail(fieldValue),
+  password: (fieldValue) => validatePassword(fieldValue),
+  
+  text: "text",
+};
 
-export default function InputField({type, label, error, setError}) {
-    const [value, setValue] = useState("");
-   
+export default function InputField({
+  type,
+  label,
+  error,
+  setError,
+  fieldValue,
+  setFieldValue,
+}) {
+  const handleChange = (e) => {
+    setFieldValue({
+      ...fieldValue,
+      [type]: e.target.value,
+    });
 
-    const handleChange = (e) => {
-       setValue(e.target.value);
-       let validate;
+    const validate = INPUT_TYPES_INTERFACE[type](fieldValue[type]);
 
-       switch (type) {
-           case typesInput.EMAIL:
-               validate= validateEmail(value);
-            break;
+    if (!validate) {
+      setError({
+        ...error,
+        [type]: true,
+      });
+      return;
+    }
 
-           case typesInput.PASSWORD:
-               validate= validatePassword(value);
-            break;
+    setError({
+      ...error,
+      [type]: false,
+    });
+    
+  };
 
-           default:
-               break;
-       }
-
-       if (!validate) {
-         setError({
-           ...error,
-           [type]: true
-         });
-         return;
-       }   
-       setError({
-           ...error,
-           [type]: false
-        });
-    };
-
-    return (
+  return (
     <TextField
-      sx={{my: 2}}
-      color={error[type]? "error" : "third"}
-      value={value}
+      sx={{ my: 2 }}
+      color={error[type] ? "error" : "third"}
+      value={fieldValue[type]}
       id="outlined-basic"
       label={label}
       onChange={handleChange}
       variant="standard"
+      type={type}
       fullWidth
     >
-      <Input type={type} />
     </TextField>
   );
 }

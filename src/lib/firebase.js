@@ -22,7 +22,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const db = getFirestore(app);
 
-export const createUser = (email, password) => {
+export const signUp = ({email, password}) => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -35,10 +35,11 @@ export const createUser = (email, password) => {
       });
 }
 
-export const signIn = (email, password) => {
+export const signIn = ({email, password}) => {
     return signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        console.log(user);
         return user;
       })
       .catch((error) => {

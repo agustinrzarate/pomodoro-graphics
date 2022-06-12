@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 import { authStateChanged } from '../lib/firebase';
 import { useRouter } from 'next/router';
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext(null);
 
 export const USER_STATES = {
   UNDEFINED: undefined,
